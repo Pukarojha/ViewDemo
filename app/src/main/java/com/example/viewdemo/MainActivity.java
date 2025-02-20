@@ -1,5 +1,6 @@
 package com.example.viewdemo;
 
+import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +22,7 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
 
     ImageView imgViewSample ;
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +93,48 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        txtViewSample.setOnClickListener(new CustomTouchListener(MainActivity.this));
+        txtViewSample.setOnTouchListener(new CustomTouchListener(MainActivity.this){
+            @Override
+            public void onLongClick() {
+                super.onLongClick();
+                Log.d("Gesture Demo", "Long Click on TextView");
+            }
+
+            @Override
+            public void onSingleClick() {
+                super.onSingleClick();
+                Log.d("GESTURE DEMO", "Single Click on TextView");
+            }
+
+            @Override
+            public void onDoubleClick() {
+                super.onDoubleClick();
+                Log.d("GESTURE DEMO", "Double Click on TextView");
+            }
+
+            @Override
+            public void onUpSwipe() {
+                super.onUpSwipe();
+                Log.d("GESTURE DEMO", "Up Swipe on TextView");
+            }
+
+            @Override
+            public void onDownSwipe() {
+                super.onDownSwipe();
+                Log.d("GESTURE DEMO", "Down Swipe on TextView");
+            }
+
+            @Override
+            public void onRightSwipe() {
+                super.onRightSwipe();
+                Log.d("GESTURE DEMO", "Right Swipe on TextView");
+            }
+
+            @Override
+            public void onLeftSwipe() {
+                super.onLeftSwipe();
+                Log.d("GESTURE DEMO", "Left Swipe on TextView");
+            }
+        });
     }
 }
