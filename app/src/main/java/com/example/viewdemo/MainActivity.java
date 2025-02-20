@@ -3,6 +3,7 @@ package com.example.viewdemo;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -71,5 +72,25 @@ public class MainActivity extends AppCompatActivity {
 
         txtViewSample.setCompoundDrawablePadding(10);
         txtViewSample.setAlpha(1f);  // 1f -> fully opaque 0f- transparent
+
+        btnShowBoth.setOnClickListener((View v) ->{
+            txtViewSample.setVisibility(View.VISIBLE);
+            imgViewSample.setVisibility(View.VISIBLE);
+
+
+        });
+        btnShowImgorText.setOnClickListener((View v)->{
+            if (btnShowImgorText.getText().equals(getString(R.string.txtShowImage))){
+                txtViewSample.setVisibility(View.INVISIBLE);
+                imgViewSample.setVisibility(View.VISIBLE);
+                btnShowImgorText.setText(R.string.txtShowText);
+            }else{
+                txtViewSample.setVisibility(View.INVISIBLE);
+                imgViewSample.setVisibility(View.GONE);
+                btnShowImgorText.setText(R.string.txtShowImage);
+            }
+        });
+
+        txtViewSample.setOnClickListener(new CustomTouchListener(MainActivity.this));
     }
 }
